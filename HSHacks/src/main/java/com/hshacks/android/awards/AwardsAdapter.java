@@ -48,12 +48,11 @@ public class AwardsAdapter extends ArrayAdapter<ParseObject> {
         TextView awardTitle = (TextView) awardCellView.findViewById(R.id.award_title);
         awardTitle.setText(mAwards.get(position).getString("title"));
 
-
         TextView awardBody = (TextView) awardCellView.findViewById(R.id.award_description);
         awardBody.setText(mAwards.get(position).getString("details"));
 
         TextView awardPrize = (TextView) awardCellView.findViewById(R.id.award_prize);
-        String award = mAwards.get(position).getString("award");
+        String award = mAwards.get(position).getString("prize");
         if(award == null)
             awardPrize.setVisibility(View.GONE);
         else
