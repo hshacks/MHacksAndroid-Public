@@ -70,7 +70,7 @@ public class ProfilePictureCache {
 
             try {
                 InputStream in = new java.net.URL(imageUrl).openStream();
-                loadedBitmap = BitmapFactory.decodeStream(in);
+                loadedBitmap = getResizedBitmap(BitmapFactory.decodeStream(in), 256, 256);
 
                 BitmapShader shader = new BitmapShader(loadedBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
                 Paint paint = new Paint();
@@ -89,6 +89,21 @@ public class ProfilePictureCache {
            // loadedBitmap.recycle();
            // loadedBitmap = null;
             return circularBitmap;
+        }
+
+        public Bitmap getResizedBitmap(Bitmap bm, int newHeight, int newWidth) {
+            int width = bm.getWidth();
+            int height = bm.getHeight();
+            float scaleWidth = ((float) newWidth) / width;
+            float scaleHeight = ((float) newHeight) / height;
+            // CREATE A MATRIX FOR THE MANIPULATION
+            Matrix matrix = new Matrix();
+            // RESIZE THE BIT MAP
+            matrix.postScale(scaleWidth, scaleHeight);
+
+            // "RECREATE" THE NEW BITMAP
+            Bitmap resizedBitmap = Bitmap.createBitmap(bm, 0, 0, width, height, matrix, false);
+            return resizedBitmap;
         }
 
         protected void onPostExecute(Bitmap bitmap) {

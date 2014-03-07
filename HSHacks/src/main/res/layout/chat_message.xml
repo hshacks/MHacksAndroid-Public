@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -10,26 +10,32 @@
         android:id="@+id/chat_author_image"
         android:layout_height="40dp"
         android:layout_width="40dp"
-        android:layout_margin="4dp"
-        android:adjustViewBounds="true"  />
+        android:padding="2dp"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY" />
 
     <LinearLayout
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginLeft="5dp"
         android:layout_width="wrap_content"
-        android:layout_gravity="center_vertical">
+        android:layout_gravity="center_vertical"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/chat_author_image">
 
         <TextView
             android:id="@+id/chat_author"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:text="PERSON"
             android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/chat_message"
+            android:text="#hellyeah"
+            android:paddingBottom="2dp"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"/>
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>
