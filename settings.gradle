@@ -1,1 +1,1 @@
-include ':libraries:facebook', 'HSHacks'
+include 'HSHacks'
