@@ -16,8 +16,6 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hshacks.android.R;
-import com.hshacks.android.awards.AwardsFragment;
 import com.hshacks.android.chat.ChatFragment;
 import com.hshacks.android.concierge.ConciergeFragment;
 import com.hshacks.android.login.LoginActivity;
@@ -25,6 +23,7 @@ import com.hshacks.android.navigation.NavigationDrawerFragment;
 import com.hshacks.android.navigation.NavigationDrawerItem;
 import com.hshacks.android.news.NewsFragment;
 import com.hshacks.android.schedule.ScheduleFragment;
+import com.hshacks.android.workshops.WorkshopFragment;
 import com.parse.ParseAnalytics;
 import com.parse.ParseUser;
 
@@ -60,7 +59,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         mFragments.add(new NavigationDrawerItem(new ConciergeFragment(), getString(R.string.title_concierge), R.drawable.running));
         mFragments.add(new NavigationDrawerItem(new ChatFragment(), getString(R.string.title_chat), R.drawable.sofa));
         mFragments.add(new NavigationDrawerItem(new ScheduleFragment(), getString(R.string.title_schedule), R.drawable.calendar));
-        mFragments.add(new NavigationDrawerItem(new AwardsFragment(), getString(R.string.title_awards), R.drawable.trophy));
+        mFragments.add(new NavigationDrawerItem(new WorkshopFragment(), getString(R.string.title_workshops), R.drawable.calendar));
 
         setContentView(R.layout.activity_main);
 
