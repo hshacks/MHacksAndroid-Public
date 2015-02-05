@@ -81,14 +81,14 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
                 }
 
                 T model = dataSnapshot.getValue(FirebaseListAdapter.this.modelClass);
-                modelNames.put(dataSnapshot.getName(), model);
+                modelNames.put(dataSnapshot.getKey(), model);
 
                 // allows for Dave-inspired easteregg
                 // if this chat message was sent more than one second after the adapter is loaded...
                 if (model instanceof Chat && (new Date()).getTime() - mInitTime > 1000) {
                     Chat chat = (Chat) model;
                     if (chat.heKnows()) {
-                        Log.d("Lounge", chat.getUser() + " knows: " + chat.getMessage());
+                        Log.d("Lounge", chat.getName() + " knows: " + chat.getText());
                         if (mActivity instanceof MainActivity) {
                             final MainActivity main = (MainActivity) mActivity;
                             main.hellYeah();
@@ -117,7 +117,7 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
                 // One of the models changed. Replace it in our list and name mapping
-                String modelName = dataSnapshot.getName();
+                String modelName = dataSnapshot.getKey();
                 T oldModel = modelNames.get(modelName);
                 T newModel = dataSnapshot.getValue(FirebaseListAdapter.this.modelClass);
                 int index = models.indexOf(oldModel);
@@ -132,7 +132,7 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
             public void onChildRemoved(DataSnapshot dataSnapshot) {
 
                 // A model was removed from the list. Remove it from our list and the name mapping
-                String modelName = dataSnapshot.getName();
+                String modelName = dataSnapshot.getKey();
                 T oldModel = modelNames.get(modelName);
                 models.remove(oldModel);
                 modelNames.remove(modelName);
@@ -143,7 +143,7 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
             public void onChildMoved(DataSnapshot dataSnapshot, String previousChildName) {
 
                 // A model changed position in the list. Update our list accordingly
-                String modelName = dataSnapshot.getName();
+                String modelName = dataSnapshot.getKey();
                 T oldModel = modelNames.get(modelName);
                 T newModel = dataSnapshot.getValue(FirebaseListAdapter.this.modelClass);
                 int index = models.indexOf(oldModel);

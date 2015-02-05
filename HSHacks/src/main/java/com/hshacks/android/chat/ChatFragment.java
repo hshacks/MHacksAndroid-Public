@@ -29,7 +29,7 @@ import com.firebase.client.ValueEventListener;
 import com.hshacks.android.R;
 
 public class ChatFragment extends ListFragment {
-    private static final String FIREBASE_URL = "https://hshacks.firebaseio.com";
+    private static final String FIREBASE_URL = "https://hshackschat.firebaseio.com";
     private static final int MAX_VISIBLE_CHATS = 50;
 
     private String username;
@@ -55,6 +55,7 @@ public class ChatFragment extends ListFragment {
         avatar_url = mSharedPreferences.getString("avatar_url", "http://www.genengnews.com/app_themes/genconnect/images/default_profile.jpg");
 
         // Setup our Firebase
+        Firebase.setAndroidContext(getActivity());
         firebase = new Firebase(FIREBASE_URL);
 
         // Setup our input methods. Enter key on the keyboard or pushing the send button

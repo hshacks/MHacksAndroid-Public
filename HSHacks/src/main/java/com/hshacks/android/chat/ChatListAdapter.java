@@ -21,15 +21,15 @@ public class ChatListAdapter extends FirebaseListAdapter<Chat> {
         // Map a Chat object to an entry in our listview
 
         ImageView authorImageView = (ImageView) view.findViewById(R.id.chat_author_image);
-        String imageUrl = chat.getImage();
+        String imageUrl = chat.getPhoto();
         if (imageUrl != null && !imageUrl.isEmpty()) {
             profilePictureCache.loadImageURLIntoImageView(imageUrl, authorImageView);
         }
 
         TextView authorText = (TextView) view.findViewById(R.id.chat_author);
-        authorText.setText(chat.getUser());
+        authorText.setText(chat.getName());
 
-        ((TextView) view.findViewById(R.id.chat_message)).setText(chat.getMessage());
+        ((TextView) view.findViewById(R.id.chat_message)).setText(chat.getText());
     }
 
     //Disables selection
