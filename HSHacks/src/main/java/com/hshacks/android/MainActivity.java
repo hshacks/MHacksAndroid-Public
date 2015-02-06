@@ -59,7 +59,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         mFragments.add(new NavigationDrawerItem(new ConciergeFragment(), getString(R.string.title_concierge), R.drawable.running));
         mFragments.add(new NavigationDrawerItem(new ChatFragment(), getString(R.string.title_chat), R.drawable.sofa));
         mFragments.add(new NavigationDrawerItem(new ScheduleFragment(), getString(R.string.title_schedule), R.drawable.calendar));
-        mFragments.add(new NavigationDrawerItem(new WorkshopFragment(), getString(R.string.title_workshops), R.drawable.calendar));
+        mFragments.add(new NavigationDrawerItem(new WorkshopFragment(), getString(R.string.title_workshops), R.drawable.lightbulb));
 
         setContentView(R.layout.activity_main);
 
