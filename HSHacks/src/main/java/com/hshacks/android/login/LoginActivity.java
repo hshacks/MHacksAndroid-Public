@@ -233,7 +233,7 @@ public class LoginActivity extends Activity implements GuestNameFragment.Guestna
                 @Override
                 public void onCompleted(GraphUser user, Response response) {
                     username = user.getName();
-                    avatar_url = "http://graph.facebook.com/" + user.getId() + "/picture?type=square";
+                    avatar_url = "https://graph.facebook.com/" + user.getId() + "/picture?type=square";
                     LoginActivity.this.runOnUiThread(completer);
                 }
             });
