@@ -87,7 +87,7 @@ public class ScheduleFragment extends Fragment implements OnRefreshListener {
 
     @Override
     public void onRefreshStarted(View view) {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Event");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Schedule");
         query.orderByAscending("time");
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
