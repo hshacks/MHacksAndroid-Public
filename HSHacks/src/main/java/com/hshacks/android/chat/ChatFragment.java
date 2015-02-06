@@ -16,6 +16,7 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -39,6 +40,7 @@ public class ChatFragment extends ListFragment {
     private ProgressBar connectionStatusThrobber;
     private ChatListAdapter chatListAdapter;
     private EditText inputText;
+    private ImageButton sendButton;
     private RelativeLayout mLayout;
 
     private SharedPreferences mSharedPreferences;
@@ -71,7 +73,8 @@ public class ChatFragment extends ListFragment {
         });
         inputText.requestFocus();
 
-        view.findViewById(R.id.sendButton).setOnClickListener(new View.OnClickListener() {
+        sendButton = (ImageButton) view.findViewById(R.id.sendButton);
+        sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 sendMessage();
@@ -120,6 +123,14 @@ public class ChatFragment extends ListFragment {
                 // Nothing
             }
         });
+
+        // Disable chat for guest accounts
+        if (getActivity().getSharedPreferences("login", Context.MODE_PRIVATE).getBoolean("is_guest", true)) {
+            inputText.setEnabled(false);
+            inputText.setText("Chat not available for guest accounts");
+            sendButton.setEnabled(false);
+            sendButton.setAlpha(0);
+        }
     }
 
     @Override

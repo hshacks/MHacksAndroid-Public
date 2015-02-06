@@ -50,6 +50,7 @@ public class LoginActivity extends Activity implements GuestNameFragment.Guestna
 
     String username = "Anonymous";
     String avatar_url = "http://www.genengnews.com/app_themes/genconnect/images/default_profile.jpg";
+    boolean is_guest = false;
 
     SharedPreferences mPrefs;
     ParseUser mUser;
@@ -199,6 +200,7 @@ public class LoginActivity extends Activity implements GuestNameFragment.Guestna
         SharedPreferences.Editor editor = mPrefs.edit();
         editor.putString("username", username);
         editor.putString("avatar_url", avatar_url);
+        editor.putBoolean("is_guest", is_guest);
         editor.commit();
         showProgress(false);
         showWelcome(true);
@@ -234,6 +236,7 @@ public class LoginActivity extends Activity implements GuestNameFragment.Guestna
                 public void onCompleted(GraphUser user, Response response) {
                     username = user.getName();
                     avatar_url = "https://graph.facebook.com/" + user.getId() + "/picture?type=square";
+                    is_guest = false;
                     LoginActivity.this.runOnUiThread(completer);
                 }
             });
@@ -261,6 +264,7 @@ public class LoginActivity extends Activity implements GuestNameFragment.Guestna
                         JSONObject profile = new JSONObject(sb.toString());
                         Log.d("Twitter", sb.toString());
                         avatar_url = profile.getString("profile_image_url");
+                        is_guest = false;
                     } catch (Exception e) {
                         Log.d("Twitter", e.toString());
                         // TODO: add a toast error? logout?
@@ -274,6 +278,7 @@ public class LoginActivity extends Activity implements GuestNameFragment.Guestna
         }
         else if (ParseUser.getCurrentUser().isAuthenticated()) {
             username = ParseUser.getCurrentUser().getUsername();
+            is_guest = true;
             runOnUiThread(completer);
         }
     }
